@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="settings.js"></script>
+    <link rel="stylesheet" href="settings.css"/>
+</head>
+
+<style>
+
+
+</style>
+<body>
+
+
+<h1 data-i18n="settings.title"></h1>
+
+<div class="settings">
+    <fieldset id="app_settings">
+        <legend data-i18n="settings.application_settings"></legend>
+
+        <label data-i18n="settings.log_message_count"></label>
+        <input type="number" min="5" max="100" id="settings_log_message_count"/>
+
+        <label data-i18n="settings.host_check_interval"></label>
+        <input type="number" min="1" max="15" id="settings_host_check_interval"/>
+
+        <label data-i18n="settings.host_timeout"></label>
+        <input type="number" min="1" max="15" id="settings_host_timeout"/>
+
+        <label data-i18n="settings.port_numbers"></label>
+        <input type="text" id="settings_port_numbers"/>
+
+        <p class="error-box" style="color: #ff6300; padding-top: 10px;"></p>
+
+        <p class="success-box" style="color: #27b63d; padding-top: 10px;"></p>
+
+        <button class="left" onclick="save()" data-i18n="settings.save_changes"></button>
+    </fieldset>
+</div>
+
+<div class="logs">
+    <fieldset id="settings.loglegend">
+        <table id="logs">
+            <tr>
+                <th class="datetime">Datetime</th>
+                <th class="entry">LogLevel</th>
+                <th class="entry">Entry</th>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+</script>
+
+</body>
+</html>

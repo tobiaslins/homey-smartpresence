@@ -1,0 +1,117 @@
+<style type="text/css">
+    .input-wrap input, .input-wrap label {
+        width: 100px !important;
+        float: left !important;
+    }
+
+    #guide_through_text {
+        padding-bottom: 0px !important;
+        margin-bottom: 3px !important;
+    }
+
+</style>
+
+<script type="text/javascript">
+    // Set window options
+    var width	= 400;
+    var height	= 400;
+    var left	= (screen.width/2)-(width/2);
+    var top		= (screen.height/2)-(height/2);
+    var url;
+
+    // Set translated items
+    $("label[for='name']").text(__('pair.configuration.name') + ':');
+    $("label[for='ip_address']").text(__('pair.configuration.ip_address') + ':');
+    $("label[for='is_guest']").text(__('pair.configuration.is_guest') + ':');
+    $("label[for='away_delay']").text(__('pair.configuration.away_delay') + ':');
+    $("#away_delay").val(900);
+
+    function configure()
+    {
+        $('.ip-scan-err-msg').text('');
+
+        var name = $("#name").val();
+        var ipAddress = $("#ip_address").val();
+        var guest = $("#is_guest").is(':checked');
+        var away_delay = $("#away_delay").val();
+
+        if(isNaN(away_delay) || parseInt(away_delay) > 3600 || parseInt(away_delay) < 1) {
+            $('.ip-scan-err-msg').text(__('pair.configuration.away_delay_incorrect'));
+            return;
+        }
+
+        var device = {
+            data: { // this data object is saved to- and unique for the device. It is passed on the get and set functions as 1st argument
+                id: "SmartPhone" + new Date().getTime() // something unique, so your driver knows which physical device it is. A MAC address or Node ID, for example. This is required
+            },
+            name: name, // the name for this device (optional),
+            settings: {
+                host: ipAddress,
+                name: name,
+                is_guest: guest,
+                away_delay: parseInt(away_delay)
+            }
+        };
+
+        Homey.emit( 'configure_ip', device, function ( err, result ) {
+            if(err) {
+                $('.ip-scan-err-msg').text(err)
+            }
+            else {
+                //Successfully connected
+                Homey.addDevice(device, function( err, result ){
+                    if( err )
+                        return console.error(err);
+                });
+
+                //Done pairing
+                Homey.done();
+            }
+        } );
+    }
+
+
+</script>
+
+<p id="guide_through_text" data-i18n="pair.configuration.guide_through_text"></p>
+<div class="form-group">
+    <div class="input-wrap">
+        <label for="name"></label>
+        <input type="text" id="name"></input>
+        <br/>
+        <br/>
+    </div>
+
+    <div class="input-wrap">
+        <label for="ip_address"></label>
+        <input type="text" id="ip_address"></input>
+        <br/>
+        <br/>
+    </div>
+
+    <div class="input-wrap">
+        <label for="is_guest"></label>
+        <input type="checkbox" id="is_guest" style="height: 26px"></input>
+        <br/>
+        <br/>
+    </div>
+
+    <div class="input-wrap">
+        <label for="away_delay"></label>
+        <input min="1" max="3600" style="border: 1px solid #e6e6e6; border-radius: 3px; height: 25px;" type="number"
+               id="away_delay"></input>
+        <br/>
+        <br/>
+        <br/>
+        <p data-i18n="pair.configuration.away_delay_explanation"></p>
+        <br/>
+    </div>
+
+    <div class="input-wrap">
+        <button style="float:right; margin-right: 150px;" class="button" id="authentication_button" onclick="configure();"
+                data-i18n="pair.configuration.configure"/>
+    </div>
+
+    <br/><br/>
+    <p class="ip-scan-err-msg" style="color: #ff6300;"></p>
+</div>

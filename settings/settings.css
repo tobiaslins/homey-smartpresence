@@ -1,0 +1,31 @@
+.settings {
+    float:left;
+    min-width:100px;
+    width: 30%;
+    margin:5px;
+}
+
+.logs {
+    float:left;
+    min-width:100px;
+    width: 65%;
+    margin:5px;
+}
+
+table#logs {
+    -webkit-user-select: initial !important;
+}
+
+table#logs tr th.datetime, table#logs tr td.datetime {
+    font-size: 12px;
+    width: 175px;
+}
+
+table#logs tr th.entry, table#logs tr td.entry {
+    font-size: 12px;
+}
+
+fieldset#logs {
+    overflow-y: scroll;
+    max-height: 500px;
+}
