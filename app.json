@@ -1,13 +1,10 @@
 {
-  "id": "nl.terryhendrix.smartpresence",
+  "id": "com.tobiaslins.smartpresence",
   "name": {
-    "en": "Smart Presence",
-    "nl": "Smart Presence"
+    "en": "Presence++",
+    "nl": "Presence++"
   },
-  "category": [
-    "internet",
-    "tools"
-  ],
+  "category": ["internet", "tools"],
   "images": {
     "large": "assets/large.png",
     "small": "assets/small.png"
@@ -18,6 +15,10 @@
   },
   "contributors": {
     "developers": [
+      {
+        "name": "Tobias Lins",
+        "email": "me@tobi.sh"
+      },
       {
         "name": "Terry Hendrix",
         "email": "terryhendrix90@gmail.com"
@@ -311,7 +312,8 @@
             "filter": "driver_id=smart_presence"
           }
         ]
-      },{
+      },
+      {
         "id": "someone_at_home",
         "title": {
           "en": "!{{Someone|Nobody}} at home",
@@ -338,7 +340,17 @@
     "name": "Terry Hendrix",
     "email": "terryhendrix90@gmail.com"
   },
-  "capabilities": {},
+
+  "capabilities": {
+    "alarm_is_home": {
+      "type": "boolean",
+      "title": {
+        "en": "Is person at home"
+      },
+      "getable": true,
+      "setable": false
+    }
+  },
   "drivers": [
     {
       "id": "smart_presence",
@@ -346,8 +358,8 @@
         "en": "Smartphone",
         "nl": "Smartphone"
       },
-      "class": "socket",
-      "capabilities": ["onoff"],
+      "class": "sensor",
+      "capabilities": ["alarm_is_home"],
       "images": {
         "large": "assets/drivers/smart_presence/large.png",
         "small": "assets/drivers/smart_presence/small.png"
@@ -377,9 +389,9 @@
                 "en": "IP address",
                 "nl": "IP adres"
               },
-              "hint" : {
-                "en" : "The IP address must be staticly assigned to the device.",
-                "nl" : "Het IP moet zijn statisch zijn toegewezen aan dit apparaat."
+              "hint": {
+                "en": "The IP address must be staticly assigned to the device.",
+                "nl": "Het IP moet zijn statisch zijn toegewezen aan dit apparaat."
               }
             },
             {
@@ -390,9 +402,9 @@
                 "en": "Is guest",
                 "nl": "Is gast"
               },
-              "hint" : {
-                "en" : "Check the box if this person is a guest.",
-                "nl" : "Vink aan als dit een gast betreft."
+              "hint": {
+                "en": "Check the box if this person is a guest.",
+                "nl": "Vink aan als dit een gast betreft."
               }
             }
           ]
