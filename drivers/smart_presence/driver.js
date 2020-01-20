@@ -56,6 +56,16 @@ module.exports.capabilities = {
       // send the state value to Homey
       callback(null, false);
     }
+  },
+  onoff:{
+    set: function(data, callback) {
+        console.info('setting onoff');
+        callback(null, false);
+    },
+    get: function(data, callback) {
+      console.info('getting onoff');
+      callback(null, false);
+    }
   }
 };
 

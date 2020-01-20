@@ -359,7 +359,7 @@
         "nl": "Smartphone"
       },
       "class": "sensor",
-      "capabilities": ["alarm_is_home"],
+      "capabilities": ["alarm_is_home", "onoff"],
       "images": {
         "large": "assets/drivers/smart_presence/large.png",
         "small": "assets/drivers/smart_presence/small.png"
