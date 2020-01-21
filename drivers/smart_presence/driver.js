@@ -49,15 +49,7 @@ module.exports.renamed = function(device_data, new_name) {
 };
 
 module.exports.capabilities = {
-  alarm_is_home: {
-    get: function(data, callback) {
-      console.info("get state");
-      console.info(data);
-      // send the state value to Homey
-      callback(null, false);
-    }
-  },
-  onoff:{
+  onoff: {
     set: function(data, callback) {
         console.info('setting onoff');
         callback(null, false);
