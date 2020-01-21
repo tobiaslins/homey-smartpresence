@@ -58,7 +58,7 @@ For adding a device, please follow the following steps:
 ## Release history
 
 ### 0.5.1
-* Device tile will now greyout when an user is not home and vise versa 
+* Device tile will now greyout when an user is not home and vice versa 
 
 ### 0.5.0
 * Workaround for V2
