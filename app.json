@@ -1,8 +1,8 @@
 {
   "id": "com.tobiaslins.smartpresence",
   "name": {
-    "en": "Presence++",
-    "nl": "Presence++"
+    "en": "Smart Presence",
+    "nl": "Smart Presence"
   },
   "category": ["internet", "tools"],
   "images": {
@@ -25,7 +25,7 @@
       }
     ]
   },
-  "version": "0.5.0",
+  "version": "0.5.1",
   "compatibility": ">=2",
   "flow": {
     "triggers": [
@@ -342,15 +342,20 @@
   },
 
   "capabilities": {
-    "alarm_is_home": {
-      "type": "boolean",
-      "title": {
-        "en": "Is person at home"
-      },
-      "getable": true,
-      "setable": false
+    "onoff": {
+			"type": "boolean",
+			"uiComponent": null,
+			"uiQuickAction": true,
+			"getable": true,
+			"setable": false,
+      "insights": false,
+			"title": {
+				"en": "Entered",
+				"nl": "Kwam binnen"
+			  }
     }
   },
+
   "drivers": [
     {
       "id": "smart_presence",
@@ -359,7 +364,7 @@
         "nl": "Smartphone"
       },
       "class": "sensor",
-      "capabilities": ["alarm_is_home"],
+      "capabilities": ["onoff"],
       "images": {
         "large": "assets/drivers/smart_presence/large.png",
         "small": "assets/drivers/smart_presence/small.png"

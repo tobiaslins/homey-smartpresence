@@ -83,14 +83,16 @@ Device.prototype.setPresent = function(present) {
   if (present) {
     var now = new Date().getTime();
     this.last_seen_at = now;
+    this.driver.exports.realtime(this.device_data, "onoff", true);
   }
+
 
   if (!present && this.present && !this.shouldDelayAwayStateSwitch(present)) {
     this.present = false;
     this.logDeviceMessage("Left.");
 
-    this.driver.exports.realtime(this.device_data, "alarm_is_home", false);
-
+   this.driver.exports.realtime(this.device_data, "onoff", false);
+    
     Homey.manager("flow").triggerDevice(
       "user_left",
       this.getFlowCardTokens(),
@@ -106,7 +108,7 @@ Device.prototype.setPresent = function(present) {
       this.getFlowCardTokens(),
       this.handleTriggerResult
     );
-    // this.driver.exports.setUnavailable(this.device_data, "Away"); // Commented out cuase this collides with the user specific condition
+    // this.driver.exports.setUnavailable(this.device_data, "Offline"); // Commented out cuase this collides with the user specific condition
 
     if (this.isGuest()) {
       Homey.manager("flow").trigger(
@@ -127,7 +129,7 @@ Device.prototype.setPresent = function(present) {
     this.present = true;
     this.logDeviceMessage("Arrived.");
 
-    this.driver.exports.realtime(this.device_data, "alarm_is_home", true);
+   this.driver.exports.realtime(this.device_data, "onoff", true);
 
     Homey.manager("flow").triggerDevice(
       "user_entered",
